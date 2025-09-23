@@ -1,4 +1,4 @@
-FROM eclipse-temurin:23-jdk-noble
+FROM eclipse-temurin:25
 # https://github.com/adoptium/containers/blob/main/22/jdk/ubuntu/noble/Dockerfile
 
 RUN apt-get update && apt-get install -y  \
