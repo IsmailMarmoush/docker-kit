@@ -4,28 +4,28 @@ on:
   push:
     branches: [ master ]
 
-env:
-  VERSION: 23.0.0
-  
 jobs:
   push:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
 
-      - name: Build image
-        run: |
-          docker build --tag memoriaio/java-docker:${VERSION} --tag memoriaio/java-docker:latest .
-          docker build --tag memoriaio/keycloak-docker:${VERSION} --tag memoriaio/keycloak-docker:latest --file keycloak.dockerfile .
+      - name: Build Java image
+        run: make build-java
+
+      - name: Build Keycloak image
+        run: make build-keycloak
 
       - name: Log into registry
-        run: echo "${{ secrets.docker_password }}" | docker login -u ${{ secrets.docker_username }} --password-stdin
-
-      - name: Push image
         run: |
-          docker push memoriaio/java-docker:${VERSION}
-          docker push memoriaio/java-docker:latest
-          docker push memoriaio/keycloak-docker:${VERSION}
-          docker push memoriaio/keycloak-docker:latest
+          echo "${{ secrets.docker_password }}" |
+            docker login \
+              --username "${{ secrets.docker_username }}" \
+              --password-stdin
+
+      - name: Push Java image
+        run: make push-java
+
+      - name: Push Keycloak image
+        run: make push-keycloak

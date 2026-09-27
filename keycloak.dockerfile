@@ -1,6 +1,8 @@
-FROM memoriaio/java-docker
+ARG JAVA_VERSION=26
 
-ARG KEYCLOAK_VERSION=25.0.4
+FROM ismailmarmoush/docker-java:${JAVA_VERSION}
+
+ARG KEYCLOAK_VERSION=26.7.4
 
 ADD https://github.com/keycloak/keycloak/releases/download/${KEYCLOAK_VERSION}/keycloak-${KEYCLOAK_VERSION}.tar.gz keycloak.tar.gz
 

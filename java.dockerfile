@@ -1,5 +1,6 @@
-FROM eclipse-temurin:23-jdk-noble
-# https://github.com/adoptium/containers/blob/main/22/jdk/ubuntu/noble/Dockerfile
+ARG JAVA_VERSION=26
+
+FROM eclipse-temurin:${JAVA_VERSION}-jdk
 
 RUN apt-get update && apt-get install -y  \
     curl  \
