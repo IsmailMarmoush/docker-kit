@@ -3,7 +3,6 @@ DOCKER_KIT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
 REGISTRY := ismailmarmoush
 
-ANSIBLE_IMAGE := $(REGISTRY)/ansible:latest
 ANSIBLE_SSH_DIR := $(HOME)/.ssh
 ANSIBLE_WORKDIR := /workspace
 ANSIBLE_PROJECT := $(CURDIR)
@@ -42,7 +41,8 @@ build-kafka:
 build-ansible:
 	docker build \
 		--build-arg ANSIBLE_VERSION=$(ANSIBLE_VERSION) \
-		-t $(ANSIBLE_IMAGE) \
+		-t $(REGISTRY)/ansible:$(ANSIBLE_VERSION) \
+		-t $(REGISTRY)/ansible:latest \
 		-f $(DOCKER_KIT)/ansible/Dockerfile \
 		$(DOCKER_KIT)/ansible
 
@@ -63,7 +63,8 @@ push-kafka:
 	docker push $(REGISTRY)/docker-kafka:latest
 
 push-ansible:
-	docker push $(ANSIBLE_IMAGE)
+	docker push $(REGISTRY)/ansible:$(ANSIBLE_VERSION)
+	docker push $(REGISTRY)/ansible:latest
 
 # -----------------------------------------------------------------------------
 # Run
@@ -95,7 +96,7 @@ define run-ansible
 		-v "$(ANSIBLE_PROJECT):$(ANSIBLE_WORKDIR)" \
 		-v "$(ANSIBLE_SSH_DIR):/root/.ssh:ro" \
 		-w "$(ANSIBLE_WORKDIR)" \
-		$(ANSIBLE_IMAGE) \
+		$(REGISTRY)/ansible:$(ANSIBLE_VERSION) \
 		$(1)
 endef
 
@@ -105,7 +106,7 @@ run-ansible:
 
 run-ansible-version:
 	docker run --rm -it \
-		$(ANSIBLE_IMAGE) \
+		$(REGISTRY)/ansible:$(ANSIBLE_VERSION) \
 		ansible --version
 
 run-ansible-playbook:
