@@ -44,6 +44,7 @@ Pull the Keycloak image:
 
 ```bash
 docker pull ismailmarmoush/docker-keycloak:26.7.4
+
 ```
 
 Run Keycloak in development mode:
