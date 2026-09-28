@@ -19,6 +19,9 @@ jobs:
       - name: Build Keycloak image
         run: make build-keycloak
 
+      - name: Build Kafka image
+        run: make build-kafka
+
       - name: Log into registry
         run: |
           echo "${{ secrets.docker_password }}" |
@@ -31,3 +34,6 @@ jobs:
 
       - name: Push Keycloak image
         run: make push-keycloak
+
+      - name: Push Kafka image
+        run: make push-kafka

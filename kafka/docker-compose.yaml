@@ -1,0 +1,70 @@
+version: '3.8'
+services:
+  #------------------------------------------------------------------------------------------
+  # Controllers
+  #------------------------------------------------------------------------------------------
+  kafka-1:
+    image: 'ismailmarmoush/docker-kafka:${KAFKA_VERSION}'
+    environment:
+      - NODE_ID=1
+      - CONFIG_TMPL=/default_tmpl/controller.properties
+      - QUORUM_CONTROLLERS=1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+      - ADVERTISED_LISTENERS=INTERNAL://kafka-1:9092
+      - LOGS_DIR=/kafka_logs
+  kafka-2:
+    image: 'ismailmarmoush/docker-kafka:${KAFKA_VERSION}'
+    environment:
+      - NODE_ID=2
+      - CONFIG_TMPL=/default_tmpl/controller.properties
+      - QUORUM_CONTROLLERS=1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+      - ADVERTISED_LISTENERS=INTERNAL://kafka-2:9092
+      - LOGS_DIR=/kafka_logs
+  kafka-3:
+    image: 'ismailmarmoush/docker-kafka:${KAFKA_VERSION}'
+    environment:
+      - NODE_ID=3
+      - CONFIG_TMPL=/default_tmpl/controller.properties
+      - QUORUM_CONTROLLERS=1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+      - ADVERTISED_LISTENERS=INTERNAL://kafka-3:9092
+      - LOGS_DIR=/kafka_logs
+
+  #------------------------------------------------------------------------------------------
+  # Brokers
+  #------------------------------------------------------------------------------------------
+  kafka-broker-4:
+    image: 'ismailmarmoush/docker-kafka:${KAFKA_VERSION}'
+    environment:
+      - NODE_ID=4
+      - CONFIG_TMPL=/default_tmpl/broker.properties
+      - QUORUM_CONTROLLERS=1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+      - ADVERTISED_LISTENERS=INTERNAL://kafka-broker-4:9092
+      - LOGS_DIR=/kafka_logs
+  kafka-broker-5:
+    image: 'ismailmarmoush/docker-kafka:${KAFKA_VERSION}'
+    environment:
+      - NODE_ID=5
+      - CONFIG_TMPL=/default_tmpl/broker.properties
+      - QUORUM_CONTROLLERS=1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+      - ADVERTISED_LISTENERS=INTERNAL://kafka-broker-5:9092
+      - LOGS_DIR=/kafka_logs
+  kafka-broker-6:
+    image: 'ismailmarmoush/docker-kafka:${KAFKA_VERSION}'
+    environment:
+      - NODE_ID=6
+      - CONFIG_TMPL=/default_tmpl/broker.properties
+      - QUORUM_CONTROLLERS=1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+      - ADVERTISED_LISTENERS=INTERNAL://kafka-broker-6:9092
+      - LOGS_DIR=/kafka_logs
+
+  kafdrop:
+    image: "obsidiandynamics/kafdrop:4.3.1-SNAPSHOT"
+    ports:
+      - "9090:9090"
+    environment:
+      - SERVER_PORT=9090
+      - BROKER_PORT=9092
+      - KAFKA_BROKERCONNECT=kafka-broker-4:9092,kafka-broker-5:9092,kafka-broker-6:9092
+    depends_on:
+      - kafka-broker-4
+      - kafka-broker-5
+      - kafka-broker-6
