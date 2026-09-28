@@ -1,6 +1,12 @@
--include .env
+DOCKER_KIT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+-include $(DOCKER_KIT)/.env
 
 REGISTRY := ismailmarmoush
+
+ANSIBLE_IMAGE := $(REGISTRY)/ansible:latest
+ANSIBLE_SSH_DIR := $(HOME)/.ssh
+ANSIBLE_WORKDIR := /workspace
+ANSIBLE_PROJECT := $(CURDIR)
 
 # -----------------------------------------------------------------------------
 # Build
@@ -12,8 +18,8 @@ build-java:
 		--build-arg TEMURIN_BUILD=$(TEMURIN_BUILD) \
 		-t $(REGISTRY)/docker-java:$(TEMURIN_VERSION)-$(TEMURIN_BUILD) \
 		-t $(REGISTRY)/docker-java:latest \
-		-f java/Dockerfile \
-		java
+		-f $(DOCKER_KIT)/java/Dockerfile \
+		$(DOCKER_KIT)/java
 
 build-keycloak:
 	docker build \
@@ -22,16 +28,23 @@ build-keycloak:
 		--build-arg KEYCLOAK_VERSION=$(KEYCLOAK_VERSION) \
 		-t $(REGISTRY)/docker-keycloak:$(KEYCLOAK_VERSION) \
 		-t $(REGISTRY)/docker-keycloak:latest \
-		-f keycloak/Dockerfile \
-		keycloak
+		-f $(DOCKER_KIT)/keycloak/Dockerfile \
+		$(DOCKER_KIT)/keycloak
 
 build-kafka:
 	docker build \
 		--build-arg KAFKA_VERSION=$(KAFKA_VERSION) \
 		-t $(REGISTRY)/docker-kafka:$(KAFKA_VERSION) \
 		-t $(REGISTRY)/docker-kafka:latest \
-		-f kafka/Dockerfile \
-		kafka
+		-f $(DOCKER_KIT)/kafka/Dockerfile \
+		$(DOCKER_KIT)/kafka
+
+build-ansible:
+	docker build \
+		--build-arg ANSIBLE_VERSION=$(ANSIBLE_VERSION) \
+		-t $(ANSIBLE_IMAGE) \
+		-f $(DOCKER_KIT)/ansible/Dockerfile \
+		$(DOCKER_KIT)/ansible
 
 # -----------------------------------------------------------------------------
 # Push
@@ -49,18 +62,52 @@ push-kafka:
 	docker push $(REGISTRY)/docker-kafka:$(KAFKA_VERSION)
 	docker push $(REGISTRY)/docker-kafka:latest
 
+push-ansible:
+	docker push $(ANSIBLE_IMAGE)
+
 # -----------------------------------------------------------------------------
 # Run
 # -----------------------------------------------------------------------------
 
 run-java-docker:
-	docker run -it ismailmarmoush/docker-java:latest
+	docker run -it $(REGISTRY)/docker-java:latest
 
 run-keycloak-docker:
-	docker run -it ismailmarmoush/docker-keycloak:latest
+	docker run -it $(REGISTRY)/docker-keycloak:latest
 
 run-kafka-docker:
-	docker run -it ismailmarmoush/docker-kafka:latest
+	docker run -it $(REGISTRY)/docker-kafka:latest
 
 run-kafka-compose:
-	docker compose -f kafka/docker-compose.yaml up
+	docker compose -f $(DOCKER_KIT)/kafka/docker-compose.yaml up
+
+# -----------------------------------------------------------------------------
+# Ansible
+# -----------------------------------------------------------------------------
+
+define check-ansible-project
+	@test -d "$(ANSIBLE_PROJECT)" || \
+		(echo "ANSIBLE_PROJECT does not exist: $(ANSIBLE_PROJECT)" && exit 1)
+endef
+
+define run-ansible
+	docker run --rm -it \
+		-v "$(ANSIBLE_PROJECT):$(ANSIBLE_WORKDIR)" \
+		-v "$(ANSIBLE_SSH_DIR):/root/.ssh:ro" \
+		-w "$(ANSIBLE_WORKDIR)" \
+		$(ANSIBLE_IMAGE) \
+		$(1)
+endef
+
+run-ansible:
+	$(check-ansible-project)
+	$(call run-ansible,bash)
+
+run-ansible-version:
+	docker run --rm -it \
+		$(ANSIBLE_IMAGE) \
+		ansible --version
+
+run-ansible-playbook:
+	$(check-ansible-project)
+	$(call run-ansible,ansible-playbook $(ARGS))

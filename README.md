@@ -6,55 +6,67 @@ Images are published under the `ismailmarmoush` Docker Hub namespace.
 
 ## Images
 
-| Image                            | Description                     |
-|----------------------------------|---------------------------------|
-| `ismailmarmoush/docker-java`     | Debian Trixie + Eclipse Temurin |
-| `ismailmarmoush/docker-keycloak` | Keycloak built on `docker-java` |
+| Image                            | Description                         |
+|----------------------------------|-------------------------------------|
+| `ismailmarmoush/docker-java`     | Debian Trixie + Eclipse Temurin     |
+| `ismailmarmoush/docker-keycloak` | Keycloak built on `docker-java`     |
+| `ismailmarmoush/docker-kafka`    | Apache Kafka built on `docker-java` |
+| `ismailmarmoush/ansible`         | Debian Trixie + Ansible             |
 
 > **Architecture:** Published images currently support **x86-64 (`amd64`) only**. ARM64 (`aarch64`) is not yet
-> supported. ARM users must clone this repository and build the images locally for their architecture.
+> supported. ARM users must build the images locally.
 
 ---
 
 # User Guide
 
-## Java
+## Docker Images
 
-Pull the Java image:
-
-```bash
-docker pull ismailmarmoush/docker-java:27-35
-```
-
-Check the Java version:
+Images can be pulled directly from Docker Hub:
 
 ```bash
-docker run --rm ismailmarmoush/docker-java:27-35 java -version
+docker pull ismailmarmoush/<image>:<version>
 ```
 
-Start JShell:
+## Makefile
+
+The Makefile can be used from inside or outside the `docker-kit` repository.
+
+From inside `docker-kit`:
 
 ```bash
-docker run --rm -it ismailmarmoush/docker-java:27-35 jshell
+cd docker-kit
+make <target>
 ```
 
-## Keycloak
-
-Pull the Keycloak image:
+From another project:
 
 ```bash
-docker pull ismailmarmoush/docker-keycloak:26.7.4
-
+cd <project>
+make -f /path/to/docker-kit/Makefile <target>
 ```
 
-Run Keycloak in development mode:
+When invoked from another project, targets that operate on the current project use that project's directory.
+
+Build an image:
 
 ```bash
-docker run --rm -p 8080:8080 ismailmarmoush/docker-keycloak:26.7.4 start-dev
+make build-<tool>
 ```
 
-For production deployments, configure Keycloak using its supported environment variables, configuration files, database,
-TLS, hostname, and deployment settings.
+Push an image:
+
+```bash
+make push-<tool>
+```
+
+Run an image:
+
+```bash
+make run-<tool>
+```
+
+Additional targets are available where required by a specific image.
 
 ---
 
@@ -62,46 +74,12 @@ TLS, hostname, and deployment settings.
 
 ## Configuration
 
-Version configuration is kept in `.env`:
+Image versions are defined in `.env`.
 
-```dotenv
-TEMURIN_VERSION=27
-TEMURIN_BUILD=35
-KEYCLOAK_VERSION=26.7.4
-```
+## Adding an Image
 
-`TEMURIN_VERSION` and `TEMURIN_BUILD` identify the exact Temurin release used by `docker-java`.
+Create a directory for the image containing its Dockerfile and installation scripts.
 
-`KEYCLOAK_VERSION` identifies the Keycloak release installed in `docker-keycloak`.
+Add the image's version configuration and corresponding Makefile targets.
 
-## Building
-
-Build the Java image:
-
-```bash
-make build-java
-```
-
-Build the Keycloak image:
-
-```bash
-make build-keycloak
-```
-
-Build `docker-java` before `docker-keycloak` when the required Java image is not already available locally or in the
-registry.
-
-## Adding an image
-
-Create a directory for the new image:
-
-```text
-new-image/
-├── Dockerfile
-└── install-new-image.sh
-```
-
-Add the corresponding build and push targets to the `Makefile`.
-
-Keep image-specific installation logic inside the image's directory. Shared scripts should only be introduced when the
-logic is genuinely common to multiple images.
+Keep image-specific installation logic inside the image's directory.
