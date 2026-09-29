@@ -22,6 +22,27 @@ Images are published under the `ismailmarmoush` Docker Hub namespace.
 
 ---
 
+# Motivation
+
+This repository brings the Docker images I use for Java applications and infrastructure into a single place, making them
+easier to maintain, version, and document.
+
+The images are built around a few simple goals:
+
+- **`Debian-<version>-slim`** — A lightweight, battle-tested base that works well for development, testing, debugging,
+  and production
+  environments.
+- **`docker-java`** — A simple Java development and runtime environment based on Debian and Eclipse Temurin, convenient
+  for running applications or interactive work with tools such as `bash` and `jshell`.
+- **`docker-keycloak`** — A Keycloak image that reuses the same Java base, and future straightforward best practiced
+  configurations
+- **`docker-kafka`** — A KRaft-based Kafka image with variable interpolation, configurable templates, and ready-to-use
+  singleton and high-availability configurations. The goal is to make running a Kafka cluster straightforward.
+- **`docker-ansible`** — Run Ansible in a container without installing it on the host, providing a consistent and
+  isolated environment for infrastructure automation.
+
+---
+
 # User Guide
 
 ## Docker Images
