@@ -17,12 +17,12 @@ Images are published under the `ismailmarmoush` Docker Hub namespace.
 
 ## Images
 
-| Image                            | Description                         |
-|----------------------------------|-------------------------------------|
-| `ismailmarmoush/docker-java`     | Debian Trixie + Eclipse Temurin     |
-| `ismailmarmoush/docker-keycloak` | Keycloak built on `docker-java`     |
-| `ismailmarmoush/docker-kafka`    | Apache Kafka built on `docker-java` |
-| `ismailmarmoush/docker-ansible`  | Debian Trixie + Ansible             |
+| Image             | Description                         |
+|-------------------|-------------------------------------|
+| `docker-java`     | Debian Trixie + Eclipse Temurin     |
+| `docker-keycloak` | Keycloak built on `docker-java`     |
+| `docker-kafka`    | Apache Kafka built on `docker-java` |
+| `docker-ansible`  | Debian Trixie + Ansible             |
 
 > **Architecture:** Published images currently support **x86-64 (`amd64`) only**. ARM64 (`aarch64`) is not yet
 > supported. ARM users must build the images locally.
