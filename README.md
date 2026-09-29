@@ -2,18 +2,14 @@
 
 [![Build](https://github.com/IsmailMarmoush/docker-kit/actions/workflows/publish.yaml/badge.svg)](https://github.com/IsmailMarmoush/docker-kit/actions/workflows/publish.yaml)
 [![License](https://img.shields.io/github/license/IsmailMarmoush/docker-kit)](https://github.com/IsmailMarmoush/docker-kit/blob/master/LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/IsmailMarmoush/docker-kit)](https://github.com/IsmailMarmoush/docker-kit/commits/master)
 
-[![Docker Java](https://img.shields.io/docker/v/ismailmarmoush/docker-java?label=docker-java)](https://hub.docker.com/r/ismailmarmoush/docker-java)
-[![Docker Java Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-java)](https://hub.docker.com/r/ismailmarmoush/docker-java)
-
-[![Docker Keycloak](https://img.shields.io/docker/v/ismailmarmoush/docker-keycloak?label=docker-keycloak)](https://hub.docker.com/r/ismailmarmoush/docker-keycloak)
-[![Docker Keycloak Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-keycloak)](https://hub.docker.com/r/ismailmarmoush/docker-keycloak)
-
-[![Docker Kafka](https://img.shields.io/docker/v/ismailmarmoush/docker-kafka?label=docker-kafka)](https://hub.docker.com/r/ismailmarmoush/docker-kafka)
-[![Docker Kafka Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-kafka)](https://hub.docker.com/r/ismailmarmoush/docker-kafka)
-
-[![Docker Ansible](https://img.shields.io/docker/v/ismailmarmoush/docker-ansible?label=docker-ansible)](https://hub.docker.com/r/ismailmarmoush/docker-ansible)
-[![Docker Ansible Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-ansible)](https://hub.docker.com/r/ismailmarmoush/docker-ansible)
+| Image             | Version                                                                                                                                                     | Pulls                                                                                                                                                   |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `docker-java`     | [![Docker Java](https://img.shields.io/docker/v/ismailmarmoush/docker-java?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-java)             | [![Docker Java Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-java)](https://hub.docker.com/r/ismailmarmoush/docker-java)             |
+| `docker-keycloak` | [![Docker Keycloak](https://img.shields.io/docker/v/ismailmarmoush/docker-keycloak?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-keycloak) | [![Docker Keycloak Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-keycloak)](https://hub.docker.com/r/ismailmarmoush/docker-keycloak) |
+| `docker-kafka`    | [![Docker Kafka](https://img.shields.io/docker/v/ismailmarmoush/docker-kafka?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-kafka)          | [![Docker Kafka Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-kafka)](https://hub.docker.com/r/ismailmarmoush/docker-kafka)          |
+| `docker-ansible`  | [![Docker Ansible](https://img.shields.io/docker/v/ismailmarmoush/docker-ansible?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-ansible)    | [![Docker Ansible Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-ansible)](https://hub.docker.com/r/ismailmarmoush/docker-ansible)    |
 
 A collection of Debian-based Docker images for Java applications and infrastructure.
 
