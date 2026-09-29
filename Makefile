@@ -41,8 +41,8 @@ build-kafka:
 build-ansible:
 	docker build \
 		--build-arg ANSIBLE_VERSION=$(ANSIBLE_VERSION) \
-		-t $(REGISTRY)/ansible:$(ANSIBLE_VERSION) \
-		-t $(REGISTRY)/ansible:latest \
+		-t $(REGISTRY)/docker-ansible:$(ANSIBLE_VERSION) \
+		-t $(REGISTRY)/docker-ansible:latest \
 		-f $(DOCKER_KIT)/ansible/Dockerfile \
 		$(DOCKER_KIT)/ansible
 
@@ -63,8 +63,8 @@ push-kafka:
 	docker push $(REGISTRY)/docker-kafka:latest
 
 push-ansible:
-	docker push $(REGISTRY)/ansible:$(ANSIBLE_VERSION)
-	docker push $(REGISTRY)/ansible:latest
+	docker push $(REGISTRY)/docker-ansible:$(ANSIBLE_VERSION)
+	docker push $(REGISTRY)/docker-ansible:latest
 
 # -----------------------------------------------------------------------------
 # Run
@@ -96,7 +96,7 @@ define run-ansible
 		-v "$(ANSIBLE_PROJECT):$(ANSIBLE_WORKDIR)" \
 		-v "$(ANSIBLE_SSH_DIR):/root/.ssh:ro" \
 		-w "$(ANSIBLE_WORKDIR)" \
-		$(REGISTRY)/ansible:$(ANSIBLE_VERSION) \
+		$(REGISTRY)/docker-ansible:$(ANSIBLE_VERSION) \
 		$(1)
 endef
 
@@ -106,7 +106,7 @@ run-ansible:
 
 run-ansible-version:
 	docker run --rm -it \
-		$(REGISTRY)/ansible:$(ANSIBLE_VERSION) \
+		$(REGISTRY)/docker-ansible:$(ANSIBLE_VERSION) \
 		ansible --version
 
 run-ansible-playbook:
