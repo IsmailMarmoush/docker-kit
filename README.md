@@ -1,6 +1,6 @@
 # Docker Kit
 
-[![Build](https://github.com/IsmailMarmoush/docker-kit/actions/workflows/build.yml/badge.svg)](https://github.com/IsmailMarmoush/docker-kit/actions/workflows/build.yml)
+[![Build](https://github.com/IsmailMarmoush/docker-kit/actions/workflows/publish.yml/badge.svg)](https://github.com/IsmailMarmoush/docker-kit/actions/workflows/publish.yml)
 [![License](https://img.shields.io/github/license/IsmailMarmoush/docker-kit)](https://github.com/IsmailMarmoush/docker-kit/blob/master/LICENSE)
 [![Docker Java](https://img.shields.io/docker/v/ismailmarmoush/docker-java?label=docker-java)](https://hub.docker.com/r/ismailmarmoush/docker-java)
 [![Docker Keycloak](https://img.shields.io/docker/v/ismailmarmoush/docker-keycloak?label=docker-keycloak)](https://hub.docker.com/r/ismailmarmoush/docker-keycloak)
