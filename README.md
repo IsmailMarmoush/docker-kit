@@ -1,5 +1,12 @@
 # Docker Kit
 
+[![Build](https://github.com/IsmailMarmoush/docker-kit/actions/workflows/build.yml/badge.svg)](https://github.com/IsmailMarmoush/docker-kit/actions/workflows/build.yml)
+[![License](https://img.shields.io/github/license/IsmailMarmoush/docker-kit)](https://github.com/IsmailMarmoush/docker-kit/blob/master/LICENSE)
+[![Docker Java](https://img.shields.io/docker/v/ismailmarmoush/docker-java?label=docker-java)](https://hub.docker.com/r/ismailmarmoush/docker-java)
+[![Docker Keycloak](https://img.shields.io/docker/v/ismailmarmoush/docker-keycloak?label=docker-keycloak)](https://hub.docker.com/r/ismailmarmoush/docker-keycloak)
+[![Docker Kafka](https://img.shields.io/docker/v/ismailmarmoush/docker-kafka?label=docker-kafka)](https://hub.docker.com/r/ismailmarmoush/docker-kafka)
+[![Docker Ansible](https://img.shields.io/docker/v/ismailmarmoush/docker-ansible?label=docker-ansible)](https://hub.docker.com/r/ismailmarmoush/docker-ansible)
+
 A collection of Debian-based Docker images for Java applications and infrastructure.
 
 Images are published under the `ismailmarmoush` Docker Hub namespace.
