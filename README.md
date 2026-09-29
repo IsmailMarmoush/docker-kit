@@ -4,25 +4,18 @@
 [![License](https://img.shields.io/github/license/IsmailMarmoush/docker-kit)](https://github.com/IsmailMarmoush/docker-kit/blob/master/LICENSE)
 [![Last Commit](https://img.shields.io/github/last-commit/IsmailMarmoush/docker-kit)](https://github.com/IsmailMarmoush/docker-kit/commits/master)
 
-| Image             | Version                                                                                                                                                     | Pulls                                                                                                                                                   |
-|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `docker-java`     | [![Docker Java](https://img.shields.io/docker/v/ismailmarmoush/docker-java?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-java)             | [![Docker Java Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-java)](https://hub.docker.com/r/ismailmarmoush/docker-java)             |
-| `docker-keycloak` | [![Docker Keycloak](https://img.shields.io/docker/v/ismailmarmoush/docker-keycloak?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-keycloak) | [![Docker Keycloak Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-keycloak)](https://hub.docker.com/r/ismailmarmoush/docker-keycloak) |
-| `docker-kafka`    | [![Docker Kafka](https://img.shields.io/docker/v/ismailmarmoush/docker-kafka?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-kafka)          | [![Docker Kafka Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-kafka)](https://hub.docker.com/r/ismailmarmoush/docker-kafka)          |
-| `docker-ansible`  | [![Docker Ansible](https://img.shields.io/docker/v/ismailmarmoush/docker-ansible?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-ansible)    | [![Docker Ansible Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-ansible)](https://hub.docker.com/r/ismailmarmoush/docker-ansible)    |
-
 A collection of Debian-based Docker images for Java applications and infrastructure.
 
 Images are published under the `ismailmarmoush` Docker Hub namespace.
 
 ## Images
 
-| Image             | Description                         |
-|-------------------|-------------------------------------|
-| `docker-java`     | Debian Trixie + Eclipse Temurin     |
-| `docker-keycloak` | Keycloak built on `docker-java`     |
-| `docker-kafka`    | Apache Kafka built on `docker-java` |
-| `docker-ansible`  | Debian Trixie + Ansible             |
+| Image             | Description                         | Version                                                                                                                                             | Pulls                                                                                                                                   |
+|-------------------|-------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| `docker-java`     | Debian Trixie + Eclipse Temurin     | [![Version](https://img.shields.io/docker/v/ismailmarmoush/docker-java?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-java)         | [![Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-java)](https://hub.docker.com/r/ismailmarmoush/docker-java)         |
+| `docker-keycloak` | Keycloak built on `docker-java`     | [![Version](https://img.shields.io/docker/v/ismailmarmoush/docker-keycloak?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-keycloak) | [![Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-keycloak)](https://hub.docker.com/r/ismailmarmoush/docker-keycloak) |
+| `docker-kafka`    | Apache Kafka built on `docker-java` | [![Version](https://img.shields.io/docker/v/ismailmarmoush/docker-kafka?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-kafka)       | [![Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-kafka)](https://hub.docker.com/r/ismailmarmoush/docker-kafka)       |
+| `docker-ansible`  | Debian Trixie + Ansible             | [![Version](https://img.shields.io/docker/v/ismailmarmoush/docker-ansible?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-ansible)   | [![Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-ansible)](https://hub.docker.com/r/ismailmarmoush/docker-ansible)   |
 
 > **Architecture:** Published images currently support **x86-64 (`amd64`) only**. ARM64 (`aarch64`) is not yet
 > supported. ARM users must build the images locally.
