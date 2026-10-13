@@ -7,7 +7,7 @@ on:
       - 'README.md'
 
 jobs:
-  push:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
