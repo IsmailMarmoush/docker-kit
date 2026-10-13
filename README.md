@@ -12,7 +12,7 @@ Images are published under the `ismailmarmoush` Docker Hub namespace.
 
 | Image             | Description                         | Version                                                                                                                                             | Pulls                                                                                                                                   |
 |-------------------|-------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| `docker-java`     | Debian Trixie + Eclipse Temurin     | [![Version](https://img.shields.io/docker/v/ismailmarmoush/docker-java?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-java)         | [![Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-java)](https://hub.docker.com/r/ismailmarmoush/docker-java)         |
+| `docker-java`     | Debian Trixie + OPENJDK     | [![Version](https://img.shields.io/docker/v/ismailmarmoush/docker-java?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-java)         | [![Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-java)](https://hub.docker.com/r/ismailmarmoush/docker-java)         |
 | `docker-keycloak` | Keycloak built on `docker-java`     | [![Version](https://img.shields.io/docker/v/ismailmarmoush/docker-keycloak?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-keycloak) | [![Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-keycloak)](https://hub.docker.com/r/ismailmarmoush/docker-keycloak) |
 | `docker-kafka`    | Apache Kafka built on `docker-java` | [![Version](https://img.shields.io/docker/v/ismailmarmoush/docker-kafka?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-kafka)       | [![Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-kafka)](https://hub.docker.com/r/ismailmarmoush/docker-kafka)       |
 | `docker-ansible`  | Debian Trixie + Ansible             | [![Version](https://img.shields.io/docker/v/ismailmarmoush/docker-ansible?label=version)](https://hub.docker.com/r/ismailmarmoush/docker-ansible)   | [![Pulls](https://img.shields.io/docker/pulls/ismailmarmoush/docker-ansible)](https://hub.docker.com/r/ismailmarmoush/docker-ansible)   |
@@ -32,7 +32,7 @@ The images are built around a few simple goals:
 - **`Debian-<version>-slim`** — A lightweight, battle-tested base that works well for development, testing, debugging,
   and production
   environments.
-- **`docker-java`** — A simple Java development and runtime environment based on Debian and Eclipse Temurin, convenient
+- **`docker-java`** — A simple Java development and runtime environment based on Debian and OpenJdk, convenient
   for running applications or interactive work with tools such as `bash` and `jshell`.
 - **`docker-keycloak`** — A Keycloak image that reuses the same Java base, and future straightforward best practiced
   configurations

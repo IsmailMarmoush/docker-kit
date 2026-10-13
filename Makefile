@@ -13,17 +13,18 @@ ANSIBLE_PROJECT := $(CURDIR)
 
 build-java:
 	docker build \
-		--build-arg TEMURIN_VERSION=$(TEMURIN_VERSION) \
-		--build-arg TEMURIN_BUILD=$(TEMURIN_BUILD) \
-		-t $(REGISTRY)/docker-java:$(TEMURIN_VERSION)-$(TEMURIN_BUILD) \
+		--build-arg OPENJDK_VERSION=$(OPENJDK_VERSION) \
+		--build-arg OPENJDK_BUILD=$(OPENJDK_BUILD) \
+		--build-arg OPENJDK_URL=$(OPENJDK_URL) \
+		-t $(REGISTRY)/docker-java:$(OPENJDK_VERSION)-$(OPENJDK_BUILD) \
 		-t $(REGISTRY)/docker-java:latest \
 		-f $(DOCKER_KIT)/java/Dockerfile \
 		$(DOCKER_KIT)/java
 
 build-keycloak:
 	docker build \
-		--build-arg TEMURIN_VERSION=$(TEMURIN_VERSION) \
-		--build-arg TEMURIN_BUILD=$(TEMURIN_BUILD) \
+		--build-arg OPENJDK_VERSION=$(OPENJDK_VERSION) \
+		--build-arg OPENJDK_BUILD=$(OPENJDK_BUILD) \
 		--build-arg KEYCLOAK_VERSION=$(KEYCLOAK_VERSION) \
 		-t $(REGISTRY)/docker-keycloak:$(KEYCLOAK_VERSION) \
 		-t $(REGISTRY)/docker-keycloak:latest \
@@ -32,6 +33,8 @@ build-keycloak:
 
 build-kafka:
 	docker build \
+		--build-arg OPENJDK_VERSION=$(OPENJDK_VERSION) \
+		--build-arg OPENJDK_BUILD=$(OPENJDK_BUILD) \
 		--build-arg KAFKA_VERSION=$(KAFKA_VERSION) \
 		-t $(REGISTRY)/docker-kafka:$(KAFKA_VERSION) \
 		-t $(REGISTRY)/docker-kafka:latest \
@@ -51,7 +54,7 @@ build-ansible:
 # -----------------------------------------------------------------------------
 
 push-java:
-	docker push $(REGISTRY)/docker-java:$(TEMURIN_VERSION)-$(TEMURIN_BUILD)
+	docker push $(REGISTRY)/docker-java:$(OPENJDK_VERSION)-$(OPENJDK_BUILD)
 	docker push $(REGISTRY)/docker-java:latest
 
 push-keycloak:
